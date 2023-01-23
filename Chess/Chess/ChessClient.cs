@@ -15,6 +15,7 @@ namespace Chess
 
         private Thread recieveMsgThread;
 
+        public FigureColor myCololor;
         public bool IsConnected {get { return tcpClient != null && tcpClient.Connected; } }
 
         private string waitMsg;
@@ -67,18 +68,18 @@ namespace Chess
                     if (message.Contains("Move"))
                     {
                         string[] splited = message.Split(' ');
-                        string[] fromSplited = splited[1].Split(';');
-                        string[] toSplited = splited[2].Split(';');
-                        var cellFrom = Board.Instance.cells[int.Parse(fromSplited[0])][int.Parse(fromSplited[1])];
-                        var cellTo = Board.Instance.cells[int.Parse(toSplited[0])][int.Parse(toSplited[1])];
+                        (int, int) from = Helpers.NotationToCoordinates(splited[1]);
+                        (int, int) to = Helpers.NotationToCoordinates(splited[2]);
+                        var cellFrom = Board.Instance.cells[from.Item1][from.Item2];
+                        var cellTo = Board.Instance.cells[to.Item1][to.Item2];
                         Board.Instance.Move(cellFrom, cellTo);
                     }
 
                 }
             }
-            catch
+            catch (Exception e)
             {
-
+                Console.WriteLine(e);
             }
 
         }
@@ -113,16 +114,19 @@ namespace Chess
         public void CreateLobby(string name)
         {
             SendMessageToServer($"CreateLobby {name}");
+            myCololor = FigureColor.white;
         }
 
         public void ConnectLobby(string name)
         {
             SendMessageToServer($"ConnectLobby {name}");
+            myCololor = FigureColor.black;
         }
 
         public async Task<List<string>> GetLobbies()
         {
             string responce = await WaitForMessageResponse("GetLobbies");
+            Console.WriteLine(responce);
             return new List<string>(responce.Split(' ')[1].Split('|'));
         }
     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ChessServer
 {
-    class LobbyMember
+    public class LobbyMember
     {
         public readonly TcpClient tcpClient;
         public readonly FigureColor color;

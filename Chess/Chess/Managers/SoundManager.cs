@@ -10,7 +10,9 @@ namespace Chess.Managers
 {
     class SoundManager
     {
-        public static SoundManager Instance { get 
+        public static SoundManager Instance 
+        { 
+            get 
             {
                 if (_instance == null)
                     _instance = new SoundManager();

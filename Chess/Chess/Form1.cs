@@ -46,7 +46,9 @@ namespace Chess
                     l.Size = new Size(64, 64);
                     l.Location = new Point(i * 64, 24 + j * 64);
                     l.ImageAlign = ContentAlignment.MiddleCenter;
-                    l.Click += OnCellSelect;
+                    int ii = i;
+                    int jj = j;
+                    l.Click += (Object sender, EventArgs e) => OnCellSelect(board.cells[ii][jj]);
                     Controls.Add(l);
                     cells[i].Add(new Cell(new Point(i, j), l));
                 }
@@ -55,22 +57,18 @@ namespace Chess
             //board.SetDefaultPreset();
         }
 
-        public void OnCellSelect(object sender, EventArgs e)
+        public void OnCellSelect(Cell cell)
         {
-            Label label = (Label)sender;
-            Tuple<int, int> pos = (Tuple<int, int>)label.Tag;
-            Cell s = board.cells[pos.Item1][ pos.Item2];
-
             if (board.turn != myColor)
                 return;
 
 
             if (selected != null)
             {
-                if (selected.figure.Color == myColor && availableMoves.Contains(s))
+                if (selected.figure.Color == myColor && availableMoves.Contains(cell))
                 {
-                    board.Move(selected, s);
-                    chessClient.SendMessageToServer($"Move {selected.position.X};{selected.position.Y} {s.position.X};{s.position.Y}");
+                    board.Move(selected, cell);
+                    chessClient.SendMessageToServer($"Move {Helpers.CoordinatesToNotation(selected.position.X, selected.position.Y)}&{Helpers.CoordinatesToNotation(cell.position.X, cell.position.Y)}");
                     UnselectAll();
                     return;
                 }
@@ -82,13 +80,13 @@ namespace Chess
             }
             else
             {
-                if (s.figure == null || s.figure.Color != myColor)
+                if (cell.figure == null || cell.figure.Color != myColor)
                 {
                     UnselectAll();
                     return;
                 }
             }
-            selected = s;
+            selected = cell;
             selected.SetSelectedColor();
             availableMoves = selected.figure.CalculateMoves();
             for (int i = 0; i < availableMoves.Count; i++)

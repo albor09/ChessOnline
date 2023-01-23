@@ -13,7 +13,7 @@ namespace Chess.Models
         public static string AssetsImgFolder { get 
             { 
                 if (assetsImgFolder == "")
-                    assetsImgFolder = InitProfectFolder("Assets", "Images");
+                    assetsImgFolder = InitProfectFolder("Chess","Assets", "Images");
                 return assetsImgFolder; 
             } 
         }
@@ -24,7 +24,7 @@ namespace Chess.Models
             get
             {
                 if (assetsSoundFolder == "")
-                    assetsSoundFolder = InitProfectFolder("Assets", "Sounds");
+                    assetsSoundFolder = InitProfectFolder("Chess", "Assets", "Sounds");
                 return assetsSoundFolder;
             }
         }
@@ -47,6 +47,18 @@ namespace Chess.Models
                 result += "\\" + dirs[i];
             }
             return result;
+        }
+
+        public static string CoordinatesToNotation(int i, int j)
+        {
+            string[] a = new string[8] { "a", "b", "c", "d", "e", "f", "g", "h" };
+            return i + a[j];
+        }
+
+        public static (int, int) NotationToCoordinates(string notation)
+        {
+            List<string> a = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h" };
+            return (int.Parse(notation[0].ToString()), a.FindIndex(x => x == notation[1].ToString()));
         }
     }
 }

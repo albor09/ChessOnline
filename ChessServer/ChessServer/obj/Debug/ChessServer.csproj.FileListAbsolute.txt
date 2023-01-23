@@ -5,3 +5,11 @@ C:\Users\albor\source\repos\ChessServer\ChessServer\bin\Debug\ChessServer.exe
 C:\Users\albor\source\repos\ChessServer\ChessServer\bin\Debug\ChessServer.pdb
 C:\Users\albor\source\repos\ChessServer\ChessServer\obj\Debug\ChessServer.exe
 C:\Users\albor\source\repos\ChessServer\ChessServer\obj\Debug\ChessServer.pdb
+C:\Users\albor\dev\Projects\ChessOnline\ChessServer\ChessServer\bin\Debug\ChessServer.exe.config
+C:\Users\albor\dev\Projects\ChessOnline\ChessServer\ChessServer\bin\Debug\ChessServer.exe
+C:\Users\albor\dev\Projects\ChessOnline\ChessServer\ChessServer\bin\Debug\ChessServer.pdb
+C:\Users\albor\dev\Projects\ChessOnline\ChessServer\ChessServer\obj\Debug\ChessServer.csproj.AssemblyReference.cache
+C:\Users\albor\dev\Projects\ChessOnline\ChessServer\ChessServer\obj\Debug\ChessServer.csproj.SuggestedBindingRedirects.cache
+C:\Users\albor\dev\Projects\ChessOnline\ChessServer\ChessServer\obj\Debug\ChessServer.csproj.CoreCompileInputs.cache
+C:\Users\albor\dev\Projects\ChessOnline\ChessServer\ChessServer\obj\Debug\ChessServer.exe
+C:\Users\albor\dev\Projects\ChessOnline\ChessServer\ChessServer\obj\Debug\ChessServer.pdb
